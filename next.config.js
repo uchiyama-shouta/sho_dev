@@ -21,7 +21,11 @@ const config = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    domains: ["images.microcms-assets.io"],
     formats: ["image/avif", "image/webp"],
+  },
+  experimental: {
+    newNextLinkBehavior: true,
   },
 };
 

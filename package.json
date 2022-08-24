@@ -1,5 +1,5 @@
 {
-  "name": "next-temlete",
+  "name": "sho_dev",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -19,10 +19,13 @@
   },
   "dependencies": {
     "@headlessui/react": "1.6.6",
+    "dayjs": "^1.11.5",
+    "jotai": "^1.8.0",
     "next": "12.2.5",
     "next-pwa": "5.5.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.10",
