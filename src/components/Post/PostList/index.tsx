@@ -17,12 +17,21 @@ const data: Post = {
   content: "Hello World!!",
 };
 
+// eslint-disable-next-line func-style
+function* range(start: number, end: number) {
+  for (let i = start; i < end; i++) {
+    yield i;
+  }
+}
+
 const PostList = () => {
   return (
     <ul className="space-y-12">
-      <li>
-        <PostItem {...data} />
-      </li>
+      {[...range(0, 10)].map((_, i) => (
+        <li key={i}>
+          <PostItem {...data} />
+        </li>
+      ))}
     </ul>
   );
 };
