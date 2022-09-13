@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import type { PostItem as PostItemType } from "apis/blogs";
 
 import { pagesPath } from "lib/$path";
+import { templete } from "lib/date";
 
 export type Props = Pick<
   PostItemType,
@@ -37,7 +38,7 @@ const PostItem: FC<Props> = ({
         <div className="flex-1">
           <p className="mt-3 text-sm">
             <time dateTime={updatedAt}>
-              {dayjs(updatedAt).format("YYYY/MM/DD")}
+              {dayjs(updatedAt).format(templete)}
             </time>
           </p>
           <p className="font-semibold sm:text-xl md:text-2xl">{title}</p>
