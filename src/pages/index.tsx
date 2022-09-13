@@ -2,6 +2,7 @@ import type { InferGetStaticPropsType, NextPage } from "next";
 
 import BackButton from "components/Button/BackButton";
 import NextButton from "components/Button/NextButton";
+import { query } from "components/Post/PostItem";
 import PostList from "components/Post/PostList";
 import { client } from "lib/microcms-client";
 
@@ -23,7 +24,7 @@ const Home: NextPage<Props> = (props) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const data = await client.blogs.$get();
+  const data = await client.blogs.$get({ query: { fields: query } });
 
   return {
     props: { posts: data.contents },
