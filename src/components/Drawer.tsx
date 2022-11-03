@@ -11,7 +11,6 @@ type Props = {
 
 const Drawer: FC<Props> = (props) => {
   const { isOpen, setIsOpen } = props;
-
   const handleClose = () => setIsOpen(false);
 
   return (
@@ -21,9 +20,9 @@ const Drawer: FC<Props> = (props) => {
           as={Fragment}
           enter="ease-in-out duration-500"
           enterFrom="opacity-0"
-          enterTo="opacity-100"
+          enterTo="opacity-80"
           leave="ease-in-out duration-500"
-          leaveFrom="opacity-100"
+          leaveFrom="opacity-80"
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black transition-opacity" />
@@ -34,10 +33,10 @@ const Drawer: FC<Props> = (props) => {
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
                 as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enter="transform transition ease-in-out duration-300 sm:duration-700"
                 enterFrom="translate-x-full"
                 enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leave="transform transition ease-in-out duration-300 sm:duration-700"
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
@@ -61,11 +60,9 @@ const Drawer: FC<Props> = (props) => {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {/* Replace with your content */}
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <div className="h-full" aria-hidden="true" />
                       </div>
-                      {/* /End replace */}
                     </div>
                   </div>
                 </Dialog.Panel>
