@@ -1,10 +1,14 @@
+import { load } from "cheerio";
 import dayjs from "dayjs";
+import hljs from "highlight.js";
 
 import type { PostItem } from "apis/blogs";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { template } from "lib/date";
 import { client } from "lib/microcms-client";
+
+import "highlight.js/styles/hybrid.css";
 
 type Props = PostItem;
 
@@ -20,6 +24,7 @@ const PostPage: NextPage<Props> = (props) => {
         公開日: {dayjs(props.updatedAt).format(template)}
       </div>
       <div
+        className="prose-lg prose-invert sm:prose-invert"
         dangerouslySetInnerHTML={{
           __html: props.content,
         }}
@@ -34,8 +39,15 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = context.params?.["id"] as string;
   const data = await client.blogs._id(id).$get();
 
+  const $ = load(data.content);
+  $("pre code").each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass("hljs");
+  });
+
   return {
-    props: { ...data },
+    props: { ...data, content: $.html() },
   };
 };
 

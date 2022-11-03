@@ -23,8 +23,11 @@
   "dependencies": {
     "@aspida/fetch": "^1.11.0",
     "@headlessui/react": "1.6.6",
+    "@tailwindcss/typography": "^0.5.7",
     "aspida": "^1.11.0",
+    "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.5",
+    "highlight.js": "^11.6.0",
     "jotai": "^1.8.0",
     "microcms-js-sdk": "^2.2.1",
     "next": "^13.0.1",
