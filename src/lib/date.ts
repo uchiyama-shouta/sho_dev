@@ -1,1 +1,1 @@
-export const templete = "YYYY/MM/DD";
+export const template = "YYYY/MM/DD";

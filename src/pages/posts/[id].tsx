@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import type { PostItem } from "apis/blogs";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { templete } from "lib/date";
+import { template } from "lib/date";
 import { client } from "lib/microcms-client";
 
 type Props = PostItem;
@@ -17,7 +17,7 @@ const PostPage: NextPage<Props> = (props) => {
         {props.title}
       </h1>
       <div className="mt-1 flex justify-center font-medium text-gray-500 dark:text-gray-300 md:mt-3">
-        公開日: {dayjs(props.updatedAt).format(templete)}
+        公開日: {dayjs(props.updatedAt).format(template)}
       </div>
       <div
         dangerouslySetInnerHTML={{
