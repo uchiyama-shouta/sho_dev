@@ -52,5 +52,3 @@ const PostItem: FC<Props> = ({
 };
 
 export default PostItem;
-
-export const query = "id,title,updatedAt,eyecatch,description";

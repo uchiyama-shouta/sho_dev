@@ -1,14 +1,17 @@
 import Link from "next/link";
+import type { FC } from "react";
+import { memo } from "react";
 
-import { useSetAtom } from "jotai";
 import { HiMenu } from "react-icons/hi";
 
 import { pagesPath } from "lib/$path";
-import { drawerAtom } from "state/drawer";
 
-const Header = () => {
-  const setOpen = useSetAtom(drawerAtom);
-  const handleOpen = () => setOpen(true);
+type Props = {
+  setIsOpen: (isOpen: boolean) => void;
+};
+
+const Header: FC<Props> = memo(({ setIsOpen }) => {
+  const handleOpen = () => setIsOpen(true);
   return (
     <header className="flex items-center justify-between bg-gray-900 py-5">
       <div>
@@ -24,6 +27,8 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = "Header";
 
 export default Header;

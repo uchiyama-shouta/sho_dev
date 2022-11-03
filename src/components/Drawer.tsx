@@ -1,18 +1,21 @@
+import type { FC } from "react";
 import { Fragment } from "react";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { useAtom } from "jotai";
 import { HiX } from "react-icons/hi";
 
-import { drawerAtom } from "state/drawer";
+type Props = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
 
-const Drawer = () => {
-  const [open, setOpen] = useAtom(drawerAtom);
+const Drawer: FC<Props> = (props) => {
+  const { isOpen, setIsOpen } = props;
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setIsOpen(false);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleClose}>
         <Transition.Child
           as={Fragment}
