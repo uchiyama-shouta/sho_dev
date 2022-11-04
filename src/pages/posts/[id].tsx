@@ -5,6 +5,7 @@ import hljs from "highlight.js";
 import type { PostItem } from "apis/blogs";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
+import BackButton from "components/Button/BackButton";
 import { template } from "lib/date";
 import { client } from "lib/microcms-client";
 
@@ -29,6 +30,7 @@ const PostPage: NextPage<Props> = (props) => {
           __html: props.content,
         }}
       />
+      <BackButton href="/" />
     </div>
   );
 };

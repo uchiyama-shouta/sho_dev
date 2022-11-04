@@ -13,8 +13,8 @@ const Home: NextPage<Props> = (props) => {
       <div className="h-7" />
       <PostList posts={props.posts} />
       <div className="mt-20 flex items-center justify-between text-white">
-        <NextButton />
-        <BackButton />
+        <BackButton href="/" />
+        <NextButton href="/" />
       </div>
     </>
   );

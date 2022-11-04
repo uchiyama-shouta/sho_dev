@@ -1,15 +1,27 @@
 import Link from "next/link";
+import type { FC, ReactNode } from "react";
 
-import { HiChevronRight } from "react-icons/hi";
+import { HiChevronLeft } from "react-icons/hi";
 
-const BackButton = () => {
+type Props = {
+  children?: ReactNode;
+  href: string;
+};
+
+const BackButton: FC<Props> = ({ children, href }) => {
   return (
     <Link
-      className="flex items-center gap-2 rounded-lg border  border-gray-700 bg-gray-800  py-2 px-5"
-      href=""
+      className="flex max-w-[100px] items-center gap-2 rounded-lg  border border-gray-700  bg-gray-800 py-2 px-5"
+      href={href}
     >
-      次へ
-      <HiChevronRight className="h-4 w-4" />
+      {children ? (
+        children
+      ) : (
+        <>
+          <HiChevronLeft className="h-4 w-4" />
+          前へ
+        </>
+      )}
     </Link>
   );
 };
