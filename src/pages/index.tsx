@@ -1,7 +1,7 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
 
-import BackButton from "components/Button/BackButton";
-import NextButton from "components/Button/NextButton";
+// import BackButton from "components/Button/BackButton";
+// import NextButton from "components/Button/NextButton";
 import PostList from "components/Post/PostList";
 import { client } from "lib/microcms-client";
 
@@ -12,10 +12,10 @@ const Home: NextPage<Props> = (props) => {
     <>
       <div className="h-7" />
       <PostList posts={props.posts} />
-      <div className="mt-20 flex items-center justify-between text-white">
+      {/* <div className="mt-20 flex items-center justify-between text-white">
         <BackButton href="/" />
         <NextButton href="/" />
-      </div>
+      </div> */}
     </>
   );
 };

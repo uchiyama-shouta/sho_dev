@@ -14,8 +14,6 @@ import "highlight.js/styles/hybrid.css";
 type Props = PostItem;
 
 const PostPage: NextPage<Props> = (props) => {
-  console.log(props);
-
   return (
     <div>
       <h1 className="text-center text-3xl font-bold leading-8 tracking-wide text-gray-200 sm:text-4xl">
@@ -25,7 +23,7 @@ const PostPage: NextPage<Props> = (props) => {
         公開日: {dayjs(props.updatedAt).format(template)}
       </div>
       <div
-        className="prose-lg prose-invert sm:prose-invert"
+        className="prose-lg prose-invert decoration-white decoration-1 underline-offset-8 prose-h2:underline prose-h3:underline prose-h4:underline sm:prose-invert"
         dangerouslySetInnerHTML={{
           __html: props.content,
         }}
