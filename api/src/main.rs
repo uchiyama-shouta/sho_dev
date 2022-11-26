@@ -13,6 +13,7 @@ use graphql::schema::AppSchema;
 use tower_http::cors::CorsLayer;
 
 pub mod graphql;
+pub mod model;
 
 #[cfg(debug_assertions)]
 use dotenv::dotenv;
