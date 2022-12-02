@@ -1,4 +1,5 @@
 use async_graphql::SimpleObject;
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(SimpleObject, Clone, Debug, Serialize, Deserialize)]
@@ -9,5 +10,6 @@ pub struct Post {
     pub description: String,
     pub content: String,
     pub thumbnail: String,
-    pub published_at: String,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }

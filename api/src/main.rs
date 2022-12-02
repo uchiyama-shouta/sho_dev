@@ -20,7 +20,7 @@ use dotenv::dotenv;
 
 use crate::graphql::schema::build_schema;
 
-const ENDPOINT: &str = "/api/graphql";
+const ENDPOINT: &str = "/graphql";
 
 async fn graphql_handler(schema: Extension<AppSchema>, req: GraphQLRequest) -> GraphQLResponse {
     schema.execute(req.into_inner()).await.into()
