@@ -1,10 +1,10 @@
 use anyhow::Ok;
 use async_graphql::{futures_util::TryStreamExt, Context, InputObject, Object};
 use chrono::Utc;
-use mongodb::{bson::doc, Client};
+use mongodb::bson::doc;
 use nanoid;
 
-use crate::model::post::Post;
+use crate::{graphql::util::return_post_collection, model::post::Post};
 
 #[derive(Default)]
 pub struct PostQuery;
@@ -17,9 +17,7 @@ const IMAGE_URL: &'static str = "https://images.microcms-assets.io/assets/988afb
 impl PostQuery {
     #[graphql(name = "get_posts")]
     async fn get_posts(&self, ctx: &Context<'_>) -> Result<Vec<Post>, anyhow::Error> {
-        let client = ctx.data::<Client>().unwrap();
-        let db = client.database("sho_db");
-        let collection = db.collection::<Post>("posts");
+        let collection = return_post_collection(ctx);
         let posts = collection
             .find(None, None)
             .await?
@@ -29,9 +27,7 @@ impl PostQuery {
     }
     #[graphql(name = "get_post")]
     async fn get_post(&self, ctx: &Context<'_>, id: String) -> Result<Option<Post>, anyhow::Error> {
-        let client = ctx.data::<Client>().unwrap();
-        let db = client.database("sho_db");
-        let collection = db.collection::<Post>("posts");
+        let collection = return_post_collection(ctx);
         let filter = doc! { "_id": id };
         let post = collection.find_one(filter, None).await?;
         match post {
@@ -49,8 +45,7 @@ impl PostMutation {
         ctx: &Context<'_>,
         input: CreatePostInput,
     ) -> Result<Post, anyhow::Error> {
-        let db = ctx.data::<Client>().unwrap();
-        let collection = db.database("sho_db").collection::<Post>("posts");
+        let collection = return_post_collection(ctx);
         let alphabet: [char; 61] = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
             'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
@@ -80,8 +75,7 @@ impl PostMutation {
         id: String,
         input: UpdatePostInput,
     ) -> Result<Option<Post>, anyhow::Error> {
-        let db = ctx.data::<Client>().unwrap();
-        let collection = db.database("sho_db").collection::<Post>("posts");
+        let collection = return_post_collection(ctx);
 
         let filter = doc! { "_id": &id };
         let prev_post = collection
@@ -91,9 +85,7 @@ impl PostMutation {
 
         collection
             .update_one(
-                doc! {
-                    "_id": &id,
-                },
+                filter.clone(),
                 doc! {
                     "$set": {
                         "title": input.title.unwrap_or(prev_post.title),
@@ -115,8 +107,7 @@ impl PostMutation {
 
     #[graphql(name = "delete_post")]
     async fn delete_post(&self, ctx: &Context<'_>, id: String) -> Result<String, anyhow::Error> {
-        let db = ctx.data::<Client>().unwrap();
-        let collection = db.database("sho_db").collection::<Post>("posts");
+        let collection = return_post_collection(ctx);
 
         let filter = doc! { "_id": &id };
 
