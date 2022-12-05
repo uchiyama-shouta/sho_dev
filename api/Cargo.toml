@@ -5,6 +5,9 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[workspace]
+members = ["image_gen"]
+
 [dependencies]
 axum = "^0.5.1"
 async-graphql = { version = "3.0.12", features = ["chrono"] }
@@ -18,3 +21,4 @@ mongodb = { version = "2.3.1", features = ["bson-chrono-0_4"]}
 anyhow = "1.0.58"
 nanoid = "0.4.0"
 chrono = { version = "0.4.23", features= ["serde"] }
+image_gen = { path = "./image_gen"}
