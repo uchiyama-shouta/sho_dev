@@ -16,8 +16,6 @@
     "lint:prettier": "prettier --check .",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "api:build": "aspida"
   },
   "dependencies": {
@@ -44,7 +42,6 @@
     "@types/react": "18.0.17",
     "@typescript-eslint/eslint-plugin": "5.34.0",
     "autoprefixer": "10.4.8",
-    "babel-loader": "8.2.5",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "eslint-config-prettier": "8.5.0",
