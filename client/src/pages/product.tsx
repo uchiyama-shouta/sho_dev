@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 const Product: NextPage = () => {
-  return <div></div>;
+  return null;
 };
 
 export default Product;
